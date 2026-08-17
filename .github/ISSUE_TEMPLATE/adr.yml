@@ -1,0 +1,40 @@
+name: ADR
+description: A significant decision that must be recorded before it is acted on.
+title: "adr: "
+labels: ["adr"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        NFR-MAIN-01 requires ADRs for significant choices. A significant decision without an ADR is not finished.
+        If a different team building SAM would face this same choice, it is an ADR; if it exists because of this
+        engagement, it belongs in the CTX register instead.
+  - type: input
+    id: number
+    attributes:
+      label: Proposed ADR number
+      description: Next free number in SRS Appendix B. Never reuse a number.
+      placeholder: ADR-0035
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: The forces at play. What makes this a decision rather than a default?
+    validations:
+      required: true
+  - type: textarea
+    id: options
+    attributes:
+      label: Options considered
+      description: At least two, each with its trade-off. One option is not a decision.
+    validations:
+      required: true
+  - type: textarea
+    id: consequences
+    attributes:
+      label: Consequences
+      description: What becomes easier, and what becomes harder or impossible.
+    validations:
+      required: true
