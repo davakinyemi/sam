@@ -1,0 +1,40 @@
+name: Bug
+description: Behaviour that contradicts a stated requirement.
+title: "fix: "
+labels: ["bug"]
+body:
+  - type: input
+    id: trace
+    attributes:
+      label: Requirement violated
+      description: The SRS ID the current behaviour contradicts. If none applies, this may be a feature request instead.
+      placeholder: FR-FLOW-10
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+      description: Quote the requirement.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction
+      description: Exact steps or a failing test. Include no tokens and no personal data - NFR-SEC-05.
+    validations:
+      required: true
+  - type: textarea
+    id: regression
+    attributes:
+      label: Regression test
+      description: The test that will fail before the fix and pass after. NFR-MAIN-02.
+    validations:
+      required: true

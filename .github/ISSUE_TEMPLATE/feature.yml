@@ -1,0 +1,43 @@
+name: Feature
+description: A user-visible capability traced to one or more SRS requirements.
+title: "feat: "
+labels: ["feature"]
+body:
+  - type: input
+    id: trace
+    attributes:
+      label: Requirement trace
+      description: SRS requirement IDs this delivers, comma-separated. ACC-02.
+      placeholder: FR-SPLIT-02, DATA-06
+    validations:
+      required: true
+  - type: dropdown
+    id: increment
+    attributes:
+      label: Increment
+      options: ["0","1","2","3","4","5","6","7","8","9"]
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: CTX-07 trims C first, then S, on evidence.
+      options: ["M - must", "S - should", "C - could"]
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Outcome
+      description: What a user can do when this is done. Describe the capability, not the implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification
+      description: The test, review, or demonstration that accepts this. ACC-01 - the requirement is not accepted until this passes.
+      placeholder: "Integration test: sum != 100 rejected on send (FR-SPLIT-03)"
+    validations:
+      required: true

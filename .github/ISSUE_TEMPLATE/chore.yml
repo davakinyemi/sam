@@ -1,0 +1,12 @@
+name: Chore
+description: Maintenance, dependency updates, tooling. No requirement trace expected.
+title: "chore: "
+labels: ["chore"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What and why
+      description: If this turns out to change behaviour or scope, close it and open a task or feature instead - those carry a trace.
+    validations:
+      required: true
