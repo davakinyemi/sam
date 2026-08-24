@@ -29,7 +29,7 @@ Maven reactor with two service skeletons and an Angular workspace. Feature work 
 |----------|-------------------------------------------------------------------|
 | Backend  | Java 25 (LTS, Eclipse Temurin), Spring Boot 4, Maven multi-module |
 | Frontend | Angular 21, signals-first, zoneless, with Material                |
-| Database | PostgreSQL 16, schema per service, row-level security             |
+| Database | PostgreSQL 18, schema per service, row-level security             |
 | Events   | Apache Kafka (KRaft), versioned JSON envelope                     |
 | Identity | Keycloak (OIDC)                                                   |
 | Testing  | JUnit 5 + Testcontainers against real Postgres and Kafka          |
