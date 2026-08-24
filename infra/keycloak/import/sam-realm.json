@@ -1,0 +1,103 @@
+{
+  "realm": "sam",
+  "displayName": "SAM",
+  "enabled": true,
+  "sslRequired": "external",
+  "registrationAllowed": false,
+  "resetPasswordAllowed": true,
+  "editUsernameAllowed": false,
+  "loginWithEmailAllowed": true,
+  "duplicateEmailsAllowed": false,
+  "accessTokenLifespan": 300,
+  "ssoSessionIdleTimeout": 1800,
+  "ssoSessionMaxLifespan": 36000,
+  "roles": {
+    "realm": [
+      {
+        "name": "sam-operator",
+        "description": "Platform operator. A property of the installation, never a tenant role."
+      }
+    ]
+  },
+  "clientScopes": [
+    {
+      "name": "sam-api",
+      "description": "Stamps the SAM backend services as an audience on access tokens.",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "true",
+        "display.on.consent.screen": "false"
+      },
+      "protocolMappers": [
+        {
+          "name": "sam-api-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.custom.audience": "sam-api",
+            "access.token.claim": "true",
+            "id.token.claim": "false",
+            "introspection.token.claim": "true"
+          }
+        }
+      ]
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "sam-gateway",
+      "name": "SAM API Gateway (backend-for-frontend)",
+      "description": "The only OIDC client in this realm. ADR-0036: the browser holds a session cookie and never receives a token.",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "bearerOnly": false,
+      "secret": "${SAM_GATEWAY_CLIENT_SECRET}",
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false,
+      "frontchannelLogout": true,
+      "redirectUris": [
+        "http://localhost:8080/login/oauth2/code/keycloak"
+      ],
+      "webOrigins": [],
+      "attributes": {
+        "post.logout.redirect.uris": "http://localhost:8080/*",
+        "pkce.code.challenge.method": "S256"
+      },
+      "defaultClientScopes": [
+        "acr",
+        "basic",
+        "email",
+        "profile",
+        "roles",
+        "web-origins",
+        "sam-api"
+      ],
+      "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access"
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "dev.owner",
+      "enabled": true,
+      "emailVerified": true,
+      "email": "dev.owner@sam.local",
+      "firstName": "Dev",
+      "lastName": "Owner",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "${SAM_DEV_USER_PASSWORD}",
+          "temporary": false
+        }
+      ]
+    }
+  ]
+}

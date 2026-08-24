@@ -61,15 +61,19 @@ services:
     image: quay.io/keycloak/keycloak:26.7.1
     container_name: sam-keycloak
     restart: unless-stopped
-    command: start-dev
+    command: start-dev --import-realm
     environment:
       KC_BOOTSTRAP_ADMIN_USERNAME: ${KEYCLOAK_ADMIN}
       KC_BOOTSTRAP_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
       KC_HEALTH_ENABLED: "true"
       KC_METRICS_ENABLED: "true"
+      SAM_GATEWAY_CLIENT_SECRET: ${SAM_GATEWAY_CLIENT_SECRET}
+      SAM_DEV_USER_PASSWORD: ${SAM_DEV_USER_PASSWORD}
     ports:
       - "8081:8080"
       - "9000:9000"
+    volumes:
+      - ./infra/keycloak/import:/opt/keycloak/data/import:ro
     networks:
       - sam
 
